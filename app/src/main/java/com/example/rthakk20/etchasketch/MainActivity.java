@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //Remove notification bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         initControls();
@@ -79,17 +84,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /**
-    public void Left(android.view.View left) {
-    }
-    public void Right(android.view.View right) {
-        Toast.makeText(this, "You pressed the Right button", Toast.LENGTH_SHORT).show();
-    }
-    public void Up(android.view.View up) {
-        Toast.makeText(this, "You pressed the Up button", Toast.LENGTH_SHORT).show();
-    }
-    public void Down(android.view.View down) {
-        Toast.makeText(this, "You pressed the Down button", Toast.LENGTH_SHORT).show();
-    }
-     **/
+
 }
