@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.RED);
 
-        canvas.drawCircle(10, 50, 10, paint);
+        //canvas.drawCircle(10, 50, 10, paint);
 
         imageView.setImageBitmap(bitmap);
 
@@ -132,7 +132,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @param direction the direction to add pixel to
      */
 
-    int test = 50;
+    int vert = 50;
+    int horizontal = 100;
 
     private void draw(String direction) {
         /**
@@ -145,9 +146,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLACK);
 
-        test += 10;
+        if (direction == "left") {
+            horizontal += 10;
+            canvas.drawCircle(horizontal, vert,  10, paint);
+        }
 
-        canvas.drawCircle(100, test,  10, paint);
+        if (direction == "right") {
+            horizontal -= 10;
+            canvas.drawCircle(horizontal, vert,  10, paint);
+        }
+
+        if (direction == "up") {
+            vert -= 10;
+            canvas.drawCircle(100, vert,  10, paint);
+        }
+
+        if (direction == "down") {
+            vert += 10;
+            canvas.drawCircle(100, vert,  10, paint);
+        }
+
 
         imageView.setImageBitmap(bitmap);
 
