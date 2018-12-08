@@ -132,8 +132,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @param direction the direction to add pixel to
      */
 
-    int vert = 50;
-    int horizontal = 100;
+    int x = 50;
+    int y = 100;
 
     private void draw(String direction) {
         /**
@@ -147,26 +147,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         paint.setColor(Color.BLACK);
 
         if (direction == "left") {
-            horizontal += 10;
-            canvas.drawCircle(horizontal, vert,  10, paint);
+            x -=10;
         }
 
         if (direction == "right") {
-            horizontal -= 10;
-            canvas.drawCircle(horizontal, vert,  10, paint);
+            x += 10;
         }
 
         if (direction == "up") {
-            vert -= 10;
-            canvas.drawCircle(100, vert,  10, paint);
+            y -= 10;
         }
 
         if (direction == "down") {
-            vert += 10;
-            canvas.drawCircle(100, vert,  10, paint);
+            y += 10;
         }
 
-
+        canvas.drawCircle(x, y,  10, paint);
         imageView.setImageBitmap(bitmap);
 
     }
