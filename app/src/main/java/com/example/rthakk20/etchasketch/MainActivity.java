@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView.post(new Runnable() {
             @Override
             public void run() {
-                initControls();
+                initCanvas();
             }
         });
 
@@ -137,9 +137,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void draw(String direction) {
         /**
          **/
-        Bitmap bitmap = Bitmap.createBitmap(imageView.getWidth(), imageView.getHeight(), Bitmap.Config.ARGB_8888);
+        //Bitmap bitmap = Bitmap.createBitmap(imageView.getWidth(), imageView.getHeight(), Bitmap.Config.ARGB_8888);
 
-        //Bitmap bitmap =((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        Bitmap bitmap =((BitmapDrawable)imageView.getDrawable()).getBitmap();
         Canvas canvas = new Canvas(bitmap);
 
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
