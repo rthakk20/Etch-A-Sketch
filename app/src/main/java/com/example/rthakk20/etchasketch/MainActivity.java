@@ -21,12 +21,15 @@ import android.hardware.SensorManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button left = null;
     private Button right = null;
     private Button up = null;
     private Button down = null;
+    private Button colorButton = null;
 
     private SensorManager mSensorManager;
     private float mAccel; // acceleration apart from gravity
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageView imageView;
 
+    private int color = Color.BLACK;
 
 
     @Override
@@ -97,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         right = (Button)findViewById(R.id.right);
         up = (Button)findViewById(R.id.up);
         down = (Button)findViewById(R.id.down);
+        colorButton = (Button)findViewById(R.id.colorButton);
 
 
 
@@ -106,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         right.setOnClickListener(this);
         up.setOnClickListener(this);
         down.setOnClickListener(this);
+        colorButton.setOnClickListener(this);
+
     }
 
     /* This method is called when any of the activity's view components is clicked. */
@@ -117,6 +124,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Get view component id.
             int id = view.getId();
+
+            if (id == R.id.colorButton) {
+                message = "Colors";
+                // initialColor is the initially-selected color to be shown in the rectangle on the left of the arrow.
+                // for example, 0xff000000 is black, 0xff0000ff is blue. Please be aware of the initial 0xff which is the alpha.
+                AmbilWarnaDialog dialog = new AmbilWarnaDialog(this, color, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                    @Override
+                    public void onOk(AmbilWarnaDialog dialog, int inColor) {
+                        // color is the color selected by the user.
+                        color = inColor;
+                    }
+
+                    @Override
+                    public void onCancel(AmbilWarnaDialog dialog) {
+                        // cancel was selected by the user
+                    }
+
+                });
+
+                dialog.show();
+
+            }
 
             // Show different message when click different view component.
             if(id == R.id.left) {
@@ -164,7 +193,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Canvas canvas = new Canvas(bitmap);
 
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.BLACK);
+        paint.setColor(color);
+
 
         if (direction == "left") {
             x -=10;
